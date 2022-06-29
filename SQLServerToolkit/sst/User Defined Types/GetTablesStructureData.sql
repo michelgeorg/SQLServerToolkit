@@ -1,0 +1,23 @@
+﻿CREATE TYPE [sst].[GetTablesStructureData] AS TABLE (
+    [Datenbank]            NVARCHAR (128) NULL,
+    [Schema_Name]          NVARCHAR (128) NULL,
+    [Filegroup_Name]       NVARCHAR (128) NULL,
+    [Id]                   INT            NOT NULL,
+    [Tabelle]              NVARCHAR (128) NULL,
+    [Spalte]               NVARCHAR (128) NULL,
+    [Spalte_Order]         SMALLINT       NULL,
+    [SqlType]              NVARCHAR (128) NULL,
+    [Nullable]             BIT            NULL,
+	[Definition]		AS (QUOTENAME([Spalte]) + ' ' + [SqlType] + ' ' + case when Nullable = 0 then 'NOT ' else '' end + 'NULL'),
+    [PK]                   BIT            NULL,
+    [Clustered]            BIT            NULL,
+    [FK]                   BIT            NULL,
+    [IdentityColumn]       BIT            NULL,
+	[DefaultConstraint]    BIT            NULL,
+	[DefaultConstraintDefinition] NVARCHAR(500) NULL,
+    [PK_Name]              NVARCHAR (128) NULL,
+    [Clustered_Index_Name] NVARCHAR (128) NULL,
+    [FK_Name]              NVARCHAR (128) NULL,
+    [ParentTabelleId]      INT            NULL,
+    [ParentTabelle]        NVARCHAR (128) NULL);
+
